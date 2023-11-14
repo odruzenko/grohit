@@ -5,6 +5,7 @@ from grohit.cli.commands.dashboards import (
     ListDashboardsCommand,
     UploadDashboardCommand,
 )
+from grohit.cli.commands.render import RenderCommand
 from grohit.cli.commands.datasources import ListDatasourcesCommand
 
 
@@ -15,6 +16,7 @@ def run() -> int:
     app.add(ListDashboardsCommand())
     app.add(GetDashboardCommand())
     app.add(UploadDashboardCommand())
+    app.add(RenderCommand())
     return app.run()
 
 

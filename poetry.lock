@@ -12,6 +12,24 @@ files = [
 ]
 
 [[package]]
+name = "attrs"
+version = "23.1.0"
+description = "Classes Without Boilerplate"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "attrs-23.1.0-py3-none-any.whl", hash = "sha256:1f28b4522cdc2fb4256ac1a020c78acf9cba2c6b461ccd2c126f3aa8e8335d04"},
+    {file = "attrs-23.1.0.tar.gz", hash = "sha256:6279836d581513a26f1bf235f9acd333bc9115683f14f7e8fae46c98fc50e015"},
+]
+
+[package.extras]
+cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
+dev = ["attrs[docs,tests]", "pre-commit"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
+tests = ["attrs[tests-no-zope]", "zope-interface"]
+tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+
+[[package]]
 name = "certifi"
 version = "2023.7.22"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -209,6 +227,23 @@ files = [
 docs = ["furo (>=2023.9.10)", "sphinx (>=7.2.6)", "sphinx-autodoc-typehints (>=1.24)"]
 testing = ["covdefaults (>=2.3)", "coverage (>=7.3.2)", "diff-cover (>=8)", "pytest (>=7.4.3)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)", "pytest-timeout (>=2.2)"]
 typing = ["typing-extensions (>=4.8)"]
+
+[[package]]
+name = "grafanalib"
+version = "0.7.0"
+description = "Library for building Grafana dashboards"
+optional = false
+python-versions = "*"
+files = [
+    {file = "grafanalib-0.7.0-py3-none-any.whl", hash = "sha256:b479e9c72e39705aef114b2d73b4328c16b81bfa3e1c423a85a13d4c912b57b5"},
+    {file = "grafanalib-0.7.0.tar.gz", hash = "sha256:8ae9fc62ee3c28e924ecb0d89ffbb5d18b1193bb1401cde59e01b3e184db9b42"},
+]
+
+[package.dependencies]
+attrs = ">=15.2.0"
+
+[package.extras]
+dev = ["flake8", "pytest"]
 
 [[package]]
 name = "identify"
@@ -834,4 +869,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "588d4e4d16520a181306f9e7267cfb1766f47a24d965f326555079c50c8d98a6"
+content-hash = "8eee28c5968fb241548cb6362b1eaa5c526592145abfdbee77aba2ea980f6401"

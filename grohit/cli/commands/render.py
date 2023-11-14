@@ -1,31 +1,36 @@
+import pathlib
+
+from cleo.helpers import option
 from rich.console import Console
-from rich.table import Table
 
 from grohit.cli.commands.command import Command
+from grohit.builder.dashboard import DashboardBuilder
+from grohit.builder.utils import core_dashboard_to_json
 
 
 class RenderCommand(Command):
-    """
-    Render a template
-    render
-        {template : The template file}
-        {--o|output= : The output file}
-        {--d|data= : The data file}
-    """
-
     name = "render"
     description = "Renders Grafana dashboard by template"
+    options = [
+        option(
+            long_name="template",
+            short_name="t",
+            description="Dashboard template",
+            flag=False,
+            multiple=True,
+        ),
+    ]
 
     def handle(self):
-        print("test")
-        folders = self.grohit.grafana_client.list_folders()
+        template = self.option("template")
+        if template is None:
+            raise ValueError("template is required")
 
-        table = Table(box=None)
-        table.add_column("Title", style="cyan")
-        table.add_column("UID")
-        table.add_column("ID")
-        for folder in folders:
-            table.add_row(folder["title"], folder["uid"], str(folder["id"]))
+        tpl_file = str(pathlib.Path(template[0]).resolve())
+
+        builder = DashboardBuilder()
+        dashboard = builder.from_yaml(tpl_file)
+        dashboard_json = core_dashboard_to_json(dashboard.build())
 
         console = Console()
-        console.print(table)
+        console.print(dashboard_json)

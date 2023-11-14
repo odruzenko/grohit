@@ -1,0 +1,13 @@
+id: grohit.tests.fixtures.simple_dashboard
+type: dashboard
+config:
+  title: Simple Dashboard
+  description: This is a simple dashboard
+  uid: sdash
+  tags:
+    - tag-1
+    - tag-2:simple2
+    - tag-3:simple3
+  editable: false
+  timezone: browser
+  sharedCrosshair: true

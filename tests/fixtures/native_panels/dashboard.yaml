@@ -1,0 +1,65 @@
+id: grohit.tests.fixtures.native_panels
+type: dashboard
+config:
+  title: Dashboard with native panels
+
+panels:
+  - id: overviewRow
+    type: grohit.builder.panels.NativePanel
+    native_panel_type: grafanalib.core.RowPanel
+    config:
+      title: Overview row
+    position:
+      x: 0
+      y: 0
+    size:
+      w: 24
+      h: 1
+
+  - id: statsPanel1
+    type: grohit.builder.panels.NativePanel
+    native_panel_type: grafanalib.core.Stat
+    config:
+      title: Stat Panel 1
+      description: This is a stat panel 1
+    grid_position:
+      x: 0
+      y: 1
+      w: 12
+      h: 5
+
+  - id: statsPanel2
+    type: grohit.builder.panels.NativePanel
+    native_panel_type: grafanalib.core.Stat
+    config:
+      title: Stat Panel 2
+      description: This is a stat panel 2
+    grid_position:
+      x: 5
+      y: 1
+      w: 12
+      h: 5
+
+  - id: statsPanel3
+    type: grohit.builder.panels.NativePanel
+    native_panel_type: grafanalib.core.Stat
+    config:
+      title: Stat Panel 3
+      description: This is a stat panel 3
+    grid_position:
+      x: 0
+      y: 6
+      w: 24
+      h: 7
+
+  - id: statsPanel4
+    type: grohit.builder.panels.NativePanel
+    native_panel_type: grafanalib.core.Stat
+    config:
+      title: Stat Panel 4
+      description: This is a stat panel 4
+    grid_pos:
+      x: 0
+      y: 7
+      w: 24
+      h: 7
