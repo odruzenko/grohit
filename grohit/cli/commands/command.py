@@ -1,7 +1,10 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from cleo.commands.command import Command as BaseCommand
-
 from grohit.cli.app import Application
-from grohit.grohit import Grohit
+
+if TYPE_CHECKING:
+    from grohit.grohit import Grohit
 
 
 class Command(BaseCommand):

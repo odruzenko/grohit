@@ -31,3 +31,6 @@ archive.zip
 
 # dot env
 .env
+
+# temporary data
+tmp/

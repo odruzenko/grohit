@@ -9,10 +9,8 @@ panels:
     native_panel_type: grafanalib.core.RowPanel
     config:
       title: Overview row
-    position:
+    grid_pos:
       x: 0
-      y: 0
-    size:
       w: 24
       h: 1
 
@@ -22,9 +20,8 @@ panels:
     config:
       title: Stat Panel 1
       description: This is a stat panel 1
-    grid_position:
+    grid_pos:
       x: 0
-      y: 1
       w: 12
       h: 5
 
@@ -34,9 +31,8 @@ panels:
     config:
       title: Stat Panel 2
       description: This is a stat panel 2
-    grid_position:
+    grid_pos:
       x: 5
-      y: 1
       w: 12
       h: 5
 
@@ -46,9 +42,8 @@ panels:
     config:
       title: Stat Panel 3
       description: This is a stat panel 3
-    grid_position:
+    grid_pos:
       x: 0
-      y: 6
       w: 24
       h: 7
 
@@ -60,6 +55,5 @@ panels:
       description: This is a stat panel 4
     grid_pos:
       x: 0
-      y: 7
       w: 24
       h: 7

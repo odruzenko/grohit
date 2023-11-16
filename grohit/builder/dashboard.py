@@ -5,6 +5,7 @@ import yaml
 
 from grafanalib.core import Dashboard as CoreDashboard
 from grohit.utils.loaders import load_class_by_name
+from grohit.builder.arrangment import PanelArranger
 
 if TYPE_CHECKING:
     from grohit.builder.panels import Panel
@@ -33,8 +34,14 @@ class Dashboard:
         if not self.panels:
             return
 
+        arranger = PanelArranger()
         for panel in self.panels:
-            for p in panel.build():
+            desired_pos = panel.measure()
+            available_pos = arranger.find_available_space(desired_pos)
+
+            panels = panel.build(position=available_pos)
+            for p in panels:
+                arranger.arrange(p)
                 board.panels.append(p)
 
 
@@ -48,7 +55,7 @@ class DashboardBuilder:
             config = {**config, **overrides}
 
         panels = []
-        if "panels" in template:
+        if "panels" in template and template["panels"]:
             for panel_config in template["panels"]:
                 panel_type = panel_config["type"]
                 panel_class = load_class_by_name(panel_type)

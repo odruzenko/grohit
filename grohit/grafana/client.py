@@ -1,5 +1,9 @@
+import logging
 import requests
 from typing import List
+
+
+logger = logging.getLogger(__name__)
 
 
 class GrafanaClient:
@@ -91,6 +95,9 @@ class GrafanaClient:
             "folderUid": folder_uid,
             "message": commit_message,
         }
+
+        logger.info("Uploading dashboard to Grafana")
+        logger.info(data)
         response = self._session.post(url, json=data)
         response.raise_for_status()
         data = response.json()

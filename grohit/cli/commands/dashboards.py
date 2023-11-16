@@ -90,11 +90,35 @@ class UploadDashboardCommand(Command):
     options = [
         option(
             long_name="file",
-            short_name="f",
+            short_name="i",
             description="The dashboard file (str) to upload",
             flag=False,
             value_required=True,
-        )
+        ),
+        option(
+            long_name="response",
+            short_name="r",
+            description="Input file is a Grafana API dashboard response",
+            flag=True,
+        ),
+        option(
+            long_name="folder-uid",
+            description="The folder uid (str) to upload the dashboard to",
+            flag=False,
+        ),
+        option(
+            long_name="folder-id",
+            description="The folder id (int) to upload the dashboard to",
+            flag=False,
+        ),
+        option(
+            long_name="auto-version",
+            description="Automatically update the dashboard version if it already exists",
+            flag=True,
+        ),
+        option(
+            long_name="overwrite", description="Overwrite existing dashboard", flag=True
+        ),
     ]
 
     def handle(self):
@@ -108,22 +132,25 @@ class UploadDashboardCommand(Command):
             content = f.read()
         file_data = json.loads(content)
 
-        current_tags = file_data["dashboard"]["tags"]
-        current_test_tag = next((t for t in current_tags if t.startswith("test")), None)
-        if current_test_tag:
-            current_tags.remove(current_test_tag)
-            current_tag_version = (
-                int(current_test_tag.split("-")[1]) if "-" in current_test_tag else 0
+        is_response_format = self.option("response")
+        if is_response_format:
+            print("Upload response data")
+            upload_response = self.grohit.grafana_uploader.upload_from_response_data(
+                file_data,
+                auto_version=self.option("auto-version"),
+                overwrite=self.option("overwrite"),
+                folder_uid=self.option("folder-uid"),
+                folder_id=self.option("folder-id"),
             )
-            new_test_tag = f"test-{current_tag_version + 1}"
-            current_tags.append(new_test_tag)
         else:
-            current_tags.append("test-1")
-        file_data["dashboard"]["tags"] = current_tags
+            upload_response = self.grohit.grafana_uploader.upload(
+                file_data,
+                auto_version=self.option("auto-version"),
+                overwrite=self.option("overwrite"),
+                folder_uid=self.option("folder-uid"),
+                folder_id=self.option("folder-id"),
+            )
 
-        upload_response = self.grohit.grafana_uploader.upload_from_respose_data(
-            file_data
-        )
         console = Console()
         console.print(upload_response)
 
