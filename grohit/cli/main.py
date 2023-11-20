@@ -7,6 +7,11 @@ from grohit.cli.commands.dashboards import (
 )
 from grohit.cli.commands.render import RenderCommand
 from grohit.cli.commands.datasources import ListDatasourcesCommand
+from grohit.cli.commands.registries import (
+    ListRegistriesCommand,
+    ListRegistryFoldersCommand,
+    ListRegistryDashboardsCommand,
+)
 
 
 def run() -> int:
@@ -17,6 +22,9 @@ def run() -> int:
     app.add(GetDashboardCommand())
     app.add(UploadDashboardCommand())
     app.add(RenderCommand())
+    app.add(ListRegistriesCommand())
+    app.add(ListRegistryFoldersCommand())
+    app.add(ListRegistryDashboardsCommand())
     return app.run()
 
 

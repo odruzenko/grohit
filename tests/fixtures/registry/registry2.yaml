@@ -1,0 +1,15 @@
+id: tests.dashboard_registry
+description: This is a sample registry file
+dashboards:
+  folders:
+    - title: folder 1
+      uid: r2-folder-1
+      dashboards:
+        - uid: r2-dashboard-1-1
+          title: dashboard 1-1
+          template: folder-1/dashboard-1.yaml
+        - uid: r2-dashboard-1-2
+          title: dashboard 1-2
+          template: folder-1/dashboard-2.yaml
+
+  templates: []

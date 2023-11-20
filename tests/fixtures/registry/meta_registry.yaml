@@ -1,0 +1,5 @@
+id: tests.meta_registry
+description: This is a sample meta-registry file
+registries:
+  - path: registry1.yaml
+  - path: registry2.yaml
